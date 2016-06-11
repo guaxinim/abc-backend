@@ -163,7 +163,7 @@
             <scope>test</scope>
         </dependency>
 
-        
+
 
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -194,6 +194,7 @@
                 </configuration>
             </plugin>
 
+            <!--
             <plugin>
                 <groupId>org.jboss.as.plugins</groupId>
                 <artifactId>jboss-as-maven-plugin</artifactId>
@@ -206,16 +207,16 @@
                         </goals>
                         <configuration>
                             <hostname>localhost</hostname>
-                            <port>10001</port> <!--
+                            <port>10001</port>
                             <domain>
                                 <server-groups>
                                     <server-group>bpms</server-group>
                                 </server-groups>
-                            </domain> -->
+                            </domain>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
 
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
