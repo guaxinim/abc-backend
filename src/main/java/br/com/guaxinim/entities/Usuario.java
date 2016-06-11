@@ -1,28 +1,47 @@
 package br.com.guaxinim.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
+@Table(name="\"Usuario\"")
+@JsonRootName("Usuario")
 public class Usuario implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
+    @JsonProperty
+    @Column(name="\"codigoUsuario\"")
     private Integer codigoUsuario;
+
     @NotNull
     @Size(max = 80)
+    @JsonProperty
+    @Column(name="\"nome\"")
     private String nome;
+
+    @JsonProperty
+    @Column(name="\"nascimento\"")
     private Date nascimento;
+
     @Size(max = 14)
+    @JsonProperty
+    @Column(name="\"cpf\"")
     private String cpf;
+
+    @JsonProperty
+    @Column(name="\"telefone\"")
     private String telefone;
+
+    @JsonProperty
+    @Column(name="\"observacao\"")
     private String observacao;
 
     public Integer getCodigoUsuario() {
