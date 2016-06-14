@@ -172,6 +172,13 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>net.sourceforge.cobertura</groupId>
+            <artifactId>cobertura</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -243,10 +250,11 @@
                 <version>3.0.1</version>
             </plugin>
 
+            <!--
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.3</version>
+                <version>2.7</version>
                 <configuration>
                     <formats>
                         <format>xml</format>
@@ -260,7 +268,7 @@
                         <phase>package</phase>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
 
         </plugins>
     </build>
