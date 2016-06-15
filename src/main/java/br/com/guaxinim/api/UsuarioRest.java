@@ -3,9 +3,6 @@ import br.com.guaxinim.entities.Usuario;
 import br.com.guaxinim.service.UsuarioService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.net.httpserver.HttpServer;
-import java.io.IOException;
-import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 import javax.ejb.EJB;
