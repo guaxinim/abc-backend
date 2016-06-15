@@ -9,10 +9,14 @@ import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 import javax.ejb.EJB;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Path;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/usuario")
 public class UsuarioRest {
@@ -23,14 +27,20 @@ public class UsuarioRest {
     UsuarioService usuarioService;
 
     @GET
+    @Path("{id}")
     @Produces("application/json")
-    public String getUsuario() {
+    public String getUsuario(@PathParam("id") String id, @Context final HttpServletResponse response) {
         String json = "";
-        Usuario u = usuarioService.getUsuario(1);
         try {
-            json = new ObjectMapper().writeValueAsString(u);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            Integer param = Integer.valueOf(id);
+            Usuario u = usuarioService.getUsuario(param);
+            try {
+                json = new ObjectMapper().writeValueAsString(u);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+        } catch (NumberFormatException nfe) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
         return json;
     }
