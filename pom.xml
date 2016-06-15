@@ -9,12 +9,20 @@
     <version>1.0</version>
     <packaging>war</packaging>
 
+
+
+    <!-- PARAMETROS DIVERSOS - VERSOES DE BIBLIOTECAS -->
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <version.javax.jee.api.version>6.0</version.javax.jee.api.version>
         <version.org.wildfly>8.0.0.Final</version.org.wildfly>
         <version.arquillian_core>1.1.4.Final</version.arquillian_core>
     </properties>
+
+
+
+    <!-- DEPENDENCIAS -->
 
     <dependencyManagement>
         <dependencies>
@@ -35,7 +43,6 @@
         </dependencies>
     </dependencyManagement>
 
-
     <dependencies>
 
         <dependency>
@@ -50,7 +57,6 @@
             <artifactId>junit</artifactId>
             <version>4.11</version>
         </dependency>
-
 
         <!-- Arquillian -->
         <dependency>
@@ -79,12 +85,6 @@
             <version>8.1.0.CR1</version>
             <scope>test</scope>
         </dependency>
-
-
-
-
-
-
 
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -161,8 +161,6 @@
             <scope>test</scope>
         </dependency>
 
-
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
@@ -176,8 +174,13 @@
             <version>2.1.1</version>
         </dependency>
 
-
     </dependencies>
+
+
+
+
+
+    <!-- PLUGINS PARA O BUILD -->
 
     <build>
         <finalName>backend</finalName>
@@ -224,13 +227,6 @@
                 <version>3.0.1</version>
             </plugin>
 
-
-            <plugin>
-             <groupId>org.codehaus.mojo</groupId>
-             <artifactId>findbugs-maven-plugin</artifactId>
-             <version>2.5.2</version>
-            </plugin>
-
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>cobertura-maven-plugin</artifactId>
@@ -251,79 +247,8 @@
                 </executions>
             </plugin>
 
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>2.5.2</version>
-                <configuration>
-                    <trace>false</trace>
-                    <effort>Max</effort>
-                    <threshold>Low</threshold>
-                    <xmlOutput>true</xmlOutput>
-                    <failOnError>false</failOnError>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>findbugs</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.9.1</version>
-                <configuration>
-                    <consoleOutput>true</consoleOutput>
-                    <configLocation>checkstyle.xml</configLocation>
-                    <propertyExpansion>basedir=${project.basedir}</propertyExpansion>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>checkstyle</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
         </plugins>
     </build>
-
-
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>2.5.2</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.9.1</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.18.1</version>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.5.1</version>
-                <configuration>
-                    <formats>
-                        <format>xml</format>
-                    </formats>
-                </configuration>
-            </plugin>
-        </plugins>
-    </reporting>
 
 
 <!--
