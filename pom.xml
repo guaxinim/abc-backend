@@ -237,14 +237,6 @@
                     </formats>
                     <check/>
                 </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>cobertura</goal>
-                        </goals>
-                        <phase>test</phase>
-                    </execution>
-                </executions>
             </plugin>
 
         </plugins>
