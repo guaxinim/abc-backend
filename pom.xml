@@ -242,7 +242,7 @@
                         <goals>
                             <goal>cobertura</goal>
                         </goals>
-                        <phase>package</phase>
+                        <phase>test</phase>
                     </execution>
                 </executions>
             </plugin>
