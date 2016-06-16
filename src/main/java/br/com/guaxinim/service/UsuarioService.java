@@ -5,7 +5,7 @@ import br.com.guaxinim.entities.Usuario;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceUnit;
+import java.util.List;
 
 
 @Stateless
@@ -17,9 +17,12 @@ public class UsuarioService {
     public void inserirUsuario(Usuario u) {
         entityManager.persist(u);
     }
-
     public Usuario getUsuario(Integer id) {
         return entityManager.find(Usuario.class, id);
+    }
+    public List<Usuario> getUsuarios() { return entityManager.createNamedQuery("Usuario.findAll").getResultList();}
+    public void removerUsuario(Usuario u) {
+        entityManager.remove(u);
     }
 
 }

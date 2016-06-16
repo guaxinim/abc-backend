@@ -12,6 +12,7 @@ import java.util.Date;
 @Entity
 @Table(name="\"Usuario\"")
 @JsonRootName("Usuario")
+@NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
 public class Usuario implements Serializable {
 
     @Id
