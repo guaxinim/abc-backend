@@ -21,8 +21,9 @@ public class UsuarioService {
         return entityManager.find(Usuario.class, id);
     }
     public List<Usuario> getUsuarios() { return entityManager.createNamedQuery("Usuario.findAll").getResultList();}
-    public void removerUsuario(Usuario u) {
-        entityManager.remove(u);
+    public void removerUsuario(Integer codigoUsuario) {
+        Usuario usuario = entityManager.find(Usuario.class, codigoUsuario);
+        entityManager.remove(usuario);
     }
 
 }
