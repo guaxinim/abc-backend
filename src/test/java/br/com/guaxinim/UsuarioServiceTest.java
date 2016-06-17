@@ -62,7 +62,7 @@ public class UsuarioServiceTest {
         log.info("Usuario " + codigoUsuario + " inserted");
     }
 
-    @Test(expected = ValidationException.class)
+    @Test(expected = Exception.class)
     @InSequence(3)
     public void testValidationUsuario() {
         log.info("Test inserirUsuario()");
