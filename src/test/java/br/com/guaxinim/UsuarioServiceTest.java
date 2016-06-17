@@ -73,7 +73,7 @@ public class UsuarioServiceTest {
             usuarioService.inserirUsuario(u1);
             Assert.fail("ContraintViolationException esperada");
         } catch (ConstraintViolationException cve) {
-
+            log.info("Exceção capturada");
         }
     }
 
