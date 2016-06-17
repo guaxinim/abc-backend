@@ -62,21 +62,19 @@ public class UsuarioServiceTest {
         log.info("Usuario " + codigoUsuario + " inserted");
     }
 
-    @Rule
-    public final ExpectedException thrown = ExpectedException.none();
-
     @Test(expected = ValidationException.class)
     @InSequence(3)
-    public void testValidationUsuario() throws ConstraintViolationException {
+    public void testValidationUsuario() {
         log.info("Test inserirUsuario()");
-        thrown.expect(ConstraintViolationException.class);
         Usuario u1 = new Usuario();
         u1.setTelefone("6181185744");
         u1.setObservacao("teste teste teste");
-        usuarioService.inserirUsuario(u1);
-        Assert.assertNotNull(u1.getCodigoUsuario());
-        codigoUsuario = u1.getCodigoUsuario();
-        log.info("Usuario " + codigoUsuario + " inserted");
+        try {
+            usuarioService.inserirUsuario(u1);
+            Assert.fail("ContraintViolationException esperada");
+        } catch (ConstraintViolationException cve) {
+
+        }
     }
 
     @Test
