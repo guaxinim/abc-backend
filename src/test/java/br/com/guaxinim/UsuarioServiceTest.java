@@ -14,6 +14,7 @@ import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
 import javax.ejb.EJB;
+import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
 import java.util.Date;
 import java.util.logging.Logger;
@@ -71,7 +72,7 @@ public class UsuarioServiceTest {
         Usuario u1 = new Usuario();
         u1.setTelefone("6181185744");
         u1.setObservacao("teste teste teste");
-        thrown.expect(ValidationException.class);
+        thrown.expect(ConstraintViolationException.class);
         usuarioService.inserirUsuario(u1);
         Assert.assertNotNull(u1.getCodigoUsuario());
         codigoUsuario = u1.getCodigoUsuario();
