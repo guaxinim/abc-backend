@@ -67,12 +67,12 @@ public class UsuarioServiceTest {
 
     @Test(expected = ValidationException.class)
     @InSequence(3)
-    public void testValidationUsuario() {
+    public void testValidationUsuario() throws ConstraintViolationException {
         log.info("Test inserirUsuario()");
+        thrown.expect(ConstraintViolationException.class);
         Usuario u1 = new Usuario();
         u1.setTelefone("6181185744");
         u1.setObservacao("teste teste teste");
-        thrown.expect(ConstraintViolationException.class);
         usuarioService.inserirUsuario(u1);
         Assert.assertNotNull(u1.getCodigoUsuario());
         codigoUsuario = u1.getCodigoUsuario();
