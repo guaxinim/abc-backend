@@ -3,15 +3,18 @@ package br.com.guaxinim;
 import br.com.guaxinim.entities.Usuario;
 import br.com.guaxinim.service.UsuarioService;
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.ShouldThrowException;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.*;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
 import javax.ejb.EJB;
+import javax.validation.ValidationException;
 import java.util.Date;
 import java.util.logging.Logger;
 
@@ -58,8 +61,25 @@ public class UsuarioServiceTest {
         log.info("Usuario " + codigoUsuario + " inserted");
     }
 
-    @Test
+    @Rule
+    public final ExpectedException thrown = ExpectedException.none();
+
+    @Test(expected = ValidationException.class)
     @InSequence(3)
+    public void testValidationUsuario() {
+        log.info("Test inserirUsuario()");
+        Usuario u1 = new Usuario();
+        u1.setTelefone("6181185744");
+        u1.setObservacao("teste teste teste");
+        thrown.expect(ValidationException.class);
+        usuarioService.inserirUsuario(u1);
+        Assert.assertNotNull(u1.getCodigoUsuario());
+        codigoUsuario = u1.getCodigoUsuario();
+        log.info("Usuario " + codigoUsuario + " inserted");
+    }
+
+    @Test
+    @InSequence(4)
     public void testGetUsuario() {
         log.info("Test getUsuario()");
         Assert.assertNotNull(codigoUsuario);
