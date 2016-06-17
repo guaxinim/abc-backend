@@ -2,20 +2,17 @@ package br.com.guaxinim;
 
 import br.com.guaxinim.entities.Usuario;
 import br.com.guaxinim.service.UsuarioService;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.ShouldThrowException;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.*;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
 import javax.ejb.EJB;
-import javax.validation.ConstraintViolationException;
-import javax.validation.ValidationException;
 import java.util.Date;
 import java.util.logging.Logger;
 
@@ -62,7 +59,7 @@ public class UsuarioServiceTest {
         log.info("Usuario " + codigoUsuario + " inserted");
     }
 
-    @Test(expected = Exception.class)
+    @Test
     @InSequence(3)
     public void testValidationUsuario() {
         log.info("Test inserirUsuario()");
@@ -72,9 +69,18 @@ public class UsuarioServiceTest {
         try {
             usuarioService.inserirUsuario(u1);
             Assert.fail("ContraintViolationException esperada");
-        } catch (ConstraintViolationException cve) {
-            log.info("Exceção capturada");
+        } catch (Exception ex) {
+            Assert.assertTrue(getRootCause(ex).toString().contains("Validation failed"));
+
         }
+    }
+
+    public static Throwable getRootCause(Throwable throwable) {
+        Throwable cause;
+        while ((cause = throwable.getCause()) != null && cause != throwable) {
+            throwable = cause;
+        }
+        return throwable;
     }
 
     @Test
